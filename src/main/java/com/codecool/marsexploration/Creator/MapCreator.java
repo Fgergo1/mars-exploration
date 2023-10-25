@@ -4,41 +4,68 @@ import java.util.Random;
 
 public class MapCreator {
 
-    private MapCreator mapCreator;
-    private Random random = new Random(3);
-    private int piStarterArea;
+    private Random random = new Random();
 
-    public String[][] createMap(int height,int width, int pitArea, int hillArea) {
-        String [][] map = new String[width][height];
-        int piStarterArea = pitArea;
-        int hillStarterArea = hillArea;
+    public String[][] createMap(int height, int width, int hillAmount, int mineralAmount, int pilAmount, int waterAmount) {
+        String[][] map = new String[width][height];
+        basicMapGenerator(map, width, height);
+
+        for (int i = 0; i < hillAmount; i++) {
+            hillCreator(map, width, height);
+        }
+
+        mineralCreator(map, width, height, mineralAmount);
+        pilCreator(map, width, height, pilAmount);
+        waterCreator(map, width, height, waterAmount);
+
+        return map;
+    }
+
+    private void basicMapGenerator(String[][] map, int width, int height) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int randomLandmark= random.nextInt(3);
-                if(randomLandmark == 1 &&
-                        piStarterArea == pitArea ||
-                        piStarterArea % 6 == 0){
-                    map[i][j] = ">";
-                    piStarterArea --;
-                } else if ( randomLandmark == 1 &&
-                        piStarterArea > 0 &&
-                        (map[i-1][j+1] == ">" || map[i-1][j -1] == ">")) {
-                    map[i][j] = ">";
-                    piStarterArea --;
-                }else if((randomLandmark == 2 && hillStarterArea == hillArea) ||
-                        (hillArea % 6 == 0  && map[i-1][j-1] == ">")) {
-                    map[i][j] = "-";
-                    hillStarterArea--;
-                }else if (randomLandmark == 2 && hillStarterArea > 0 &&
-                        i > 0 && j > 0 &&
-                        (map[i-1][j] == "-" && map[i][j-1] == "-")){
-                    map[i][j] = "-";
-                    hillStarterArea --;
-                } else if (randomLandmark == 0 || randomLandmark == 3) {
-                    map[i][j] = ".";
-                }
+                map[i][j] = "o";
             }
         }
-        return map;
+    }
+
+    private void hillCreator(String[][] map, int width, int height) {
+        int randomNumX = random.nextInt(0, width);
+        int randomNumY = random.nextInt(0, height);
+
+        map[randomNumX][randomNumY] = "^";
+    }
+
+    private void mineralCreator(String[][] map, int width, int height, int mineralAmount) {
+        for (int i = 0; i < mineralAmount; i++) {
+            int randomNumX = random.nextInt(0, width);
+            int randomNumY = random.nextInt(0, height);
+
+            if (map[randomNumX][randomNumY].equals("o")) {
+                map[randomNumX][randomNumY] = "*";
+            }
+        }
+    }
+
+    private void pilCreator(String[][] map, int width, int height, int pilAmount) {
+        for (int i = 0; i < pilAmount; i++) {
+            int randomNumX = random.nextInt(0, width);
+            int randomNumY = random.nextInt(0, height);
+
+            if (map[randomNumX][randomNumY].equals("o")) {
+                map[randomNumX][randomNumY] = "#";
+            }
+        }
+    }
+
+    private void waterCreator(String[][] map, int width, int height, int waterAmount) {
+        for (int i = 0; i < waterAmount; i++) {
+            int randomNumX = random.nextInt(0, width);
+            int randomNumY = random.nextInt(0, height);
+
+            if (map[randomNumX][randomNumY].equals("o")) {
+                map[randomNumX][randomNumY] = "~";
+            }
+        }
     }
 }
