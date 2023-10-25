@@ -11,12 +11,12 @@ public class MapCreator {
         basicMapGenerator(map, width, height);
 
         for (int i = 0; i < hillAmount; i++) {
-            hillCreator(map, width, height);
+            hillCreator(map, width, height,hillAmount);
+        }
+        for(int j = 0; j < pilAmount; j ++){
+            createPits(map,width,height,pilAmount);
         }
 
-        mineralCreator(map, width, height, mineralAmount);
-        pilCreator(map, width, height, pilAmount);
-        waterCreator(map, width, height, waterAmount);
 
         return map;
     }
@@ -29,43 +29,45 @@ public class MapCreator {
         }
     }
 
-    private void hillCreator(String[][] map, int width, int height) {
-        int randomNumX = random.nextInt(0, width);
-        int randomNumY = random.nextInt(0, height);
-
-        map[randomNumX][randomNumY] = "^";
+    private void hillCreator(String[][] map, int width, int height , int hillAmount) {
+        int hillPlaced = 0;
+        while (hillPlaced < hillAmount ){
+            int randomNumX = random.nextInt( width);
+            int randomNumY = random.nextInt( height);
+            if(map[randomNumX][randomNumY].equals("o")){
+                map[randomNumX][randomNumY] = "^";
+                hillPlaced ++;
+            }
+        }
     }
+    private void createPits(String[][] map, int width, int height, int pilAmount) {
+        int pitsPlaced = 0;
 
-    private void mineralCreator(String[][] map, int width, int height, int mineralAmount) {
-        for (int i = 0; i < mineralAmount; i++) {
-            int randomNumX = random.nextInt(0, width);
-            int randomNumY = random.nextInt(0, height);
+        while (pitsPlaced < pilAmount) {
+            int randomNumX = random.nextInt(width - 1);
+            int randomNumY = random.nextInt(height - 4);
+            boolean canPlacePit = true;
 
-            if (map[randomNumX][randomNumY].equals("o")) {
-                map[randomNumX][randomNumY] = "*";
+            for (int i = randomNumX; i < randomNumX + 2; i++) {
+                for (int j = randomNumY; j < randomNumY + 5; j++) {
+                    if (!map[i][j].equals("o")) {
+                        canPlacePit = false;
+                        break;
+                    }
+                }
+                if (!canPlacePit) {
+                    break;
+                }
+            }
+            if (canPlacePit) {
+                for (int i = randomNumX; i < randomNumX + 2; i++) {
+                    for (int j = randomNumY; j < randomNumY + 5; j++) {
+                        map[i][j] = "#";
+                    }
+                }
+                pitsPlaced++;
             }
         }
     }
 
-    private void pilCreator(String[][] map, int width, int height, int pilAmount) {
-        for (int i = 0; i < pilAmount; i++) {
-            int randomNumX = random.nextInt(0, width);
-            int randomNumY = random.nextInt(0, height);
-
-            if (map[randomNumX][randomNumY].equals("o")) {
-                map[randomNumX][randomNumY] = "#";
-            }
-        }
-    }
-
-    private void waterCreator(String[][] map, int width, int height, int waterAmount) {
-        for (int i = 0; i < waterAmount; i++) {
-            int randomNumX = random.nextInt(0, width);
-            int randomNumY = random.nextInt(0, height);
-
-            if (map[randomNumX][randomNumY].equals("o")) {
-                map[randomNumX][randomNumY] = "~";
-            }
-        }
-    }
 }

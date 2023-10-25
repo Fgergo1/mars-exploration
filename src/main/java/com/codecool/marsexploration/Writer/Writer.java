@@ -5,23 +5,6 @@ import com.codecool.marsexploration.Creator.MapCreator;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Writer {
-
-    private String [][] map;
-    private final String filePath = "src/main/resources" + "exploration-4.txt";
-
-    public Writer(String[][] map) {
-        this.map = map;
-    }
-
-
-   package com.codecool.marsexploration.Writer;
-
-import com.codecool.marsexploration.Creator.MapCreator;
-
-import java.io.FileWriter;
-import java.io.IOException;
-
     public class Writer {
 
         private String [][] map;
@@ -45,4 +28,4 @@ import java.io.IOException;
         }
     }
 
-}
+
