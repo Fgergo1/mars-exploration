@@ -20,7 +20,16 @@ public class Writer {
         FileWriter fileWriter = new FileWriter(filePath);
         for (int i = 0; i < map.length ; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                    fileWriter.write("f");
+                if(map[i][j] == ">"){
+                    fileWriter.write(">");
+                } else if (map[i][j] == "-") {
+                    fileWriter.write("-");
+                } else if (map[i][j] == ".") {
+                    fileWriter.write('.');
+                }else{
+                    fileWriter.write(".");
+                }
+
             }
             fileWriter.write(System.lineSeparator());
         }
