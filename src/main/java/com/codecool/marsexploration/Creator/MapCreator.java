@@ -1,6 +1,7 @@
 package com.codecool.marsexploration.Creator;
 
 import com.codecool.marsexploration.Input.MapParameters;
+import com.codecool.marsexploration.Symbols.Symbols;
 
 import java.util.Random;
 
@@ -14,20 +15,29 @@ public class MapCreator implements  MapCreatorInterface {
     }
 
     public String[][] createMap() {
-        String[][] map = new String[mapParam.getWidth()][mapParam.getHeight()];
-        basicMapGenerator(map, mapParam.getWidth(), mapParam.getHeight());
-        for (int i = mapParam.getHillAmount(); i > 0; i--) {
-            hillCreator(map, mapParam.getHillArea(), mapParam.getWidth(),mapParam.getHeight());
-        }
-        mineralCreator(map,mapParam.getWidth(),mapParam.getHeight(), mapParam.getMineralAmount());
+        int width = mapParam.getWidth();
+        int height = mapParam.getHeight();
+        int hillAmount = mapParam.getHillAmount();
+        int hillArea = mapParam.getHillArea();
+        int pitAmount = mapParam.getPitAmount();
+        int waterAmount = mapParam.getWaterAmount();
+        int mineralAmount = mapParam.getMineralAmount();
 
-        for(int j = 0; j < mapParam.getPitAmount(); j ++){
-            createPits(map, mapParam.getWidth(), mapParam.getHeight(),mapParam.getPitAmount());
-        }
-        for(int i = 0; i < mapParam.getWaterAmount(); i ++){
-            createWater(map, mapParam.getWidth(), mapParam.getHeight(), mapParam.getWaterAmount());
-        }
 
+
+        String[][] map = new String[width][height];
+        basicMapGenerator(map, width, height);
+        for (int i = hillAmount; i > 0; i--) {
+            hillCreator(map, hillArea, width,height);
+        }
+        mineralCreator(map,width,height, mineralAmount);
+
+        for(int j = 0; j < pitAmount; j ++){
+            createPits(map, width, height,pitAmount);
+        }
+        for(int i = 0; i < waterAmount; i ++){
+            createWater(map, width, height, waterAmount);
+        }
         return map;
     }
 
