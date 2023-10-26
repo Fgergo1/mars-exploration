@@ -5,6 +5,31 @@ import com.codecool.marsexploration.Input.MapParameters;
 import java.util.Random;
 
 public class MapCreator implements  MapCreatorInterface {
+    private final Random random;
+    private final MapParameters mapParam;
+
+    public MapCreator(Random random, MapParameters mapParameters) {
+        this.random = random;
+        this.mapParam = mapParameters;
+    }
+
+    public String[][] createMap() {
+        String[][] map = new String[mapParam.getWidth()][mapParam.getHeight()];
+        basicMapGenerator(map, mapParam.getWidth(), mapParam.getHeight());
+        for (int i = mapParam.getHillAmount(); i > 0; i--) {
+            hillCreator(map, mapParam.getHillArea(), mapParam.getWidth(),mapParam.getHeight());
+        }
+        mineralCreator(map,mapParam.getWidth(),mapParam.getHeight(), mapParam.getMineralAmount());
+
+        for(int j = 0; j < mapParam.getPitAmount(); j ++){
+            createPits(map, mapParam.getWidth(), mapParam.getHeight(),mapParam.getPitAmount());
+        }
+        for(int i = 0; i < mapParam.getWaterAmount(); i ++){
+            createWater(map, mapParam.getWidth(), mapParam.getHeight(), mapParam.getWaterAmount());
+        }
+
+        return map;
+    }
 
 
 
@@ -62,31 +87,9 @@ public class MapCreator implements  MapCreatorInterface {
 
 
 
-    private final Random random;
-    private final MapParameters mapParam;
 
-    public MapCreator(Random random, MapParameters mapParameters) {
-        this.random = random;
-        this.mapParam = mapParameters;
-    }
 
-    public String[][] createMap() {
-        String[][] map = new String[mapParam.getWidth()][mapParam.getHeight()];
-        basicMapGenerator(map, mapParam.getWidth(), mapParam.getHeight());
-        for (int i = mapParam.getHillAmount(); i > 0; i--) {
-            hillCreator(map, mapParam.getHillArea(), mapParam.getWidth(),mapParam.getHeight());
-        }
-        mineralCreator(map,mapParam.getWidth(),mapParam.getHeight(), mapParam.getMineralAmount());
 
-        for(int j = 0; j < mapParam.getPitAmount(); j ++){
-            createPits(map, mapParam.getWidth(), mapParam.getHeight(),mapParam.getPitAmount());
-        }
-        for(int i = 0; i < mapParam.getWaterAmount(); i ++){
-            createWater(map, mapParam.getWidth(), mapParam.getHeight(), mapParam.getWaterAmount());
-        }
-
-        return map;
-    }
 
 
 
@@ -126,15 +129,13 @@ public class MapCreator implements  MapCreatorInterface {
         }
     }
 
-    private Boolean neighborChecker(String symbol,int i, int j, String[][] map){
-        if(map[i][j-1] == symbol && map[i][j] != symbol) {
-            return true;
-        } else if (map[i][j+1] == symbol && map[i][j] != symbol) {
-            return true;
+    private Boolean neighborChecker(String symbol,int i, int j, String[][] map) {
+
+        if((i < mapParam.getWidth()-1 && i > 0) && (j < mapParam.getHeight()-1 && j >0)) {
+            if(map[i][j-1] == symbol || map[i][j+1] == symbol || map[i+1][j] == symbol || map[i-1][j] == symbol){
+                return true;
+            }
         }
-        else if (map[i-1][j] == symbol && map[i][j] != symbol) {
-            return true;
-        }
-        return false;
+        return  false;
     }
 }

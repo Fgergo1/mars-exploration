@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class MapParameters {
 
-    private Scanner scanner;
-    private Logger logger;
+    private final Scanner scanner;
+    private final Logger logger;
 
     private int height;
     private int width;
