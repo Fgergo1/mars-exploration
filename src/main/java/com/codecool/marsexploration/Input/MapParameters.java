@@ -57,7 +57,7 @@ public class MapParameters {
     }
 
 
-    public void getParameters () {
+    public void getParametersFromInput () {
         logger.logInfo("Please add the map height!");
         this.height = scanner.nextInt();
 

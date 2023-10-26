@@ -18,7 +18,7 @@ public class MapUi {
     }
 
     public void run() throws IOException {
-        mapParameters.getParameters();
+        mapParameters.getParametersFromInput();
         mapCreator.createMap();
         writer.writeMapToTxt();
     }

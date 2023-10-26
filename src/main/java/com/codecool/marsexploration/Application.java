@@ -1,6 +1,8 @@
 package com.codecool.marsexploration;
 
 import com.codecool.marsexploration.Creator.MapCreator;
+import com.codecool.marsexploration.Creator.NeighborChecker;
+import com.codecool.marsexploration.Creator.NeighborCheckerImpl;
 import com.codecool.marsexploration.Input.MapParameters;
 import com.codecool.marsexploration.Logger.Logger;
 import com.codecool.marsexploration.Logger.LoggerImpl;
@@ -18,12 +20,10 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
         Logger logger = new LoggerImpl();
         MapParameters mapParameters = new MapParameters(scanner,logger);
-        MapCreator mapCreator = new MapCreator(random, mapParameters);
+        NeighborChecker neighborChecker = new NeighborCheckerImpl(mapParameters);
+        MapCreator mapCreator = new MapCreator(random, mapParameters, neighborChecker);
         Writer writer = new Writer(mapCreator);
         MapUi mapUi = new MapUi(mapParameters,mapCreator,writer);
-
-
-
 
 
         mapUi.run();

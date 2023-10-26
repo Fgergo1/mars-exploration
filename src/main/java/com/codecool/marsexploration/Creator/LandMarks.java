@@ -1,5 +1,7 @@
 package com.codecool.marsexploration.Creator;
 
-public interface LandMarks {
+import com.codecool.marsexploration.Input.MapParameters;
 
+public interface LandMarks {
+    public void createLandmark(String[][] map, MapParameters mapParameters, int width, int height);
 }

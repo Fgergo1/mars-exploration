@@ -1,18 +1,24 @@
 package com.codecool.marsexploration.Creator;
 
+import com.codecool.marsexploration.Input.MapParameters;
 import com.codecool.marsexploration.Symbols.Symbols;
 
 import java.util.Random;
 
-public class PitCreatorImpl implements PitCreator{
-    Random random = new Random();
-    private String groundSymbol = Symbols.GROUND.getSymbol();
-    private  String pitsSymbol = Symbols.PIT.getSymbol();
+public class PitCreatorImpl implements LandMarks{
+
+    private final Random random;
+    private final String groundSymbol = Symbols.GROUND.getSymbol();
+    private final String pitsSymbol = Symbols.PIT.getSymbol();
+    public PitCreatorImpl(Random random) {
+        this.random = random;
+    }
+
     @Override
-    public void createPits(String[][] map, int width, int height, int pilAmount) {
+    public void createLandmark(String[][] map, MapParameters mapParameters, int width, int height) {
         int pitsPlaced = 0;
 
-        while (pitsPlaced < pilAmount) {
+        while (pitsPlaced < mapParameters.getPitAmount()) {
             int randomNumX = random.nextInt(width - 1);
             int randomNumY = random.nextInt(height - 4);
             boolean canPlacePit = true;
@@ -38,4 +44,6 @@ public class PitCreatorImpl implements PitCreator{
             }
         }
     }
+
+
 }
