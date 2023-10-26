@@ -1,4 +1,4 @@
 package com.codecool.marsexploration.Creator;
 
-public class HillCreator {
+public class WaterCreatorImpl {
 }
