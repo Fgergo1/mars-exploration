@@ -14,8 +14,11 @@ public class MapParameters {
     private int width;
     private int hillArea;
     private int pitArea;
+
+    private int pitAmount;
     private int hillAmount;
     private int mineralAmount;
+    private int waterAmount;
 
     public MapParameters(Scanner scanner, Logger logger) {
         this.scanner = scanner;
@@ -25,6 +28,9 @@ public class MapParameters {
 
     public int getMineralAmount() {
         return mineralAmount;
+    }
+    public int getWaterAmount() {
+        return waterAmount;
     }
 
     public int getHillAmount() {
@@ -46,6 +52,9 @@ public class MapParameters {
     public int getPitArea() {
         return pitArea;
     }
+    public int getPitAmount() {
+        return pitAmount;
+    }
 
 
     public void getParameters () {
@@ -64,9 +73,14 @@ public class MapParameters {
         logger.logInfo("Please add the amount of the minerals!");
         this.mineralAmount = scanner.nextInt();
 
+        logger.logInfo("Please add the amount of the waters!");
+        this.waterAmount = scanner.nextInt();
 
         logger.logInfo("Please add the size of the pits!");
         this.pitArea = scanner.nextInt();
+
+        logger.logInfo("Please add the amount of the pits!");
+        this.pitAmount = scanner.nextInt();
     }
 
 }

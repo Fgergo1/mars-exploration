@@ -5,25 +5,8 @@ import com.codecool.marsexploration.Input.MapParameters;
 import java.util.Random;
 
 public class MapCreator implements  MapCreatorInterface {
-    private Random random = new Random();
-
-    public String[][] createMap(int height, int width, int hillAmount, int mineralAmount, int pilAmount, int waterAmount) {
-        String[][] map = new String[width][height];
-        basicMapGenerator(map, width, height);
-
-        for (int i = 0; i < hillAmount; i++) {
-            hillCreator(map, width, height,hillAmount);
-        }
-        for(int j = 0; j < pilAmount; j ++){
-            createPits(map,width,height,pilAmount);
-        }
-        for(int i = 0; i < waterAmount; i ++){
-            createWater(map,width,height,waterAmount);
-        }
 
 
-        return map;
-    }
 
     private void basicMapGenerator(String[][] map, int width, int height) {
         for (int i = 0; i < width; i++) {
@@ -33,17 +16,7 @@ public class MapCreator implements  MapCreatorInterface {
         }
     }
 
-    private void hillCreator(String[][] map, int width, int height , int hillAmount) {
-        int hillPlaced = 0;
-        while (hillPlaced < hillAmount ){
-            int randomNumX = random.nextInt( width);
-            int randomNumY = random.nextInt( height);
-            if(map[randomNumX][randomNumY].equals("o")){
-                map[randomNumX][randomNumY] = "^";
-                hillPlaced ++;
-            }
-        }
-    }
+
     private void createPits(String[][] map, int width, int height, int pilAmount) {
         int pitsPlaced = 0;
 
@@ -79,33 +52,15 @@ public class MapCreator implements  MapCreatorInterface {
         while (waterSavedAmount > 0) {
             int i = random.nextInt(width);
             int j = random.nextInt(height);
-            if (map[i][j].equals("o") && neighborChecker("#", i, j, map, "~")) {
+            if (map[i][j].equals("o") && neighborChecker("#", i, j, map)) {
                 map[i][j] = "~";
                 waterSavedAmount--;
             }
         }
     }
-    private boolean neighborChecker(String symbol, int i, int j, String[][] map, String treasure) {
-        int width = map.length;
-        int height = map[0].length;
 
-        for (int x = -1; x <= 1; x++) {
-            for (int y = -1; y <= 1; y++) {
-                int neighborX = i + x;
-                int neighborY = j + y;
 
-                if (neighborX >= 0 && neighborX < width && neighborY >= 0 && neighborY < height) {
-                    if (map[neighborX][neighborY].equals(symbol) && !map[i][j].equals(treasure)) {
-                        return true;
-                    }
-                }
-            }
-        }
 
-        return false;
-    }
-
-=======
 
     private final Random random;
     private final MapParameters mapParam;
@@ -123,16 +78,17 @@ public class MapCreator implements  MapCreatorInterface {
         }
         mineralCreator(map,mapParam.getWidth(),mapParam.getHeight(), mapParam.getMineralAmount());
 
+        for(int j = 0; j < mapParam.getPitAmount(); j ++){
+            createPits(map, mapParam.getWidth(), mapParam.getHeight(),mapParam.getPitAmount());
+        }
+        for(int i = 0; i < mapParam.getWaterAmount(); i ++){
+            createWater(map, mapParam.getWidth(), mapParam.getHeight(), mapParam.getWaterAmount());
+        }
+
         return map;
     }
 
-    private void basicMapGenerator(String[][] map, int width, int height) {
-        for (int i = 1; i < width - 1; i++) {
-            for (int j = 1; j < height - 1; j++) {
-                map[i][j] = "o";
-            }
-        }
-    }
+
 
 
     private void hillCreator(String[][] map, int hillArea, int width, int height) {
