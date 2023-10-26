@@ -9,7 +9,8 @@ import java.util.Random;
 public class Application {
     public static void main(String[] args) throws IOException {
         Random random = new Random();
-        MapCreator mapCreator = new MapCreator();
+  
+MapCreator mapCreator = new MapCreator(random);
         System.out.println(random.nextInt(42));
 
 
