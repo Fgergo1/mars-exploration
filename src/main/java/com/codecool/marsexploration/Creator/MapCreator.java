@@ -16,6 +16,9 @@ public class MapCreator {
         for(int j = 0; j < pilAmount; j ++){
             createPits(map,width,height,pilAmount);
         }
+        for(int i = 0; i < waterAmount; i ++){
+            createWater(map,width,height,waterAmount);
+        }
 
 
         return map;
@@ -68,6 +71,37 @@ public class MapCreator {
                 pitsPlaced++;
             }
         }
+    }
+    private void createWater(String[][] map, int width, int height, int waterAmount) {
+        int waterSavedAmount = waterAmount;
+
+        while (waterSavedAmount > 0) {
+            int i = random.nextInt(width);
+            int j = random.nextInt(height);
+            if (map[i][j].equals("o") && neighborChecker("#", i, j, map, "~")) {
+                map[i][j] = "~";
+                waterSavedAmount--;
+            }
+        }
+    }
+    private boolean neighborChecker(String symbol, int i, int j, String[][] map, String treasure) {
+        int width = map.length;
+        int height = map[0].length;
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                int neighborX = i + x;
+                int neighborY = j + y;
+
+                if (neighborX >= 0 && neighborX < width && neighborY >= 0 && neighborY < height) {
+                    if (map[neighborX][neighborY].equals(symbol) && !map[i][j].equals(treasure)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 }
