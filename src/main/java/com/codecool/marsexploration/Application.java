@@ -14,12 +14,14 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) throws IOException {
         Random random = new Random();
+
         Scanner scanner = new Scanner(System.in);
         Logger logger = new LoggerImpl();
         MapParameters mapParameters = new MapParameters(scanner,logger);
         MapCreator mapCreator = new MapCreator(random, mapParameters);
         Writer writer = new Writer(mapCreator);
         MapUi mapUi = new MapUi(mapParameters,mapCreator,writer);
+
 
 
 
