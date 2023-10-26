@@ -30,9 +30,6 @@ public class MapCreator implements  MapCreatorInterface {
 
         return map;
     }
-
-
-
     private void basicMapGenerator(String[][] map, int width, int height) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
