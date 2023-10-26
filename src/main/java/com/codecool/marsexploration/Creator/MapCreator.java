@@ -23,8 +23,6 @@ public class MapCreator implements  MapCreatorInterface {
         int waterAmount = mapParam.getWaterAmount();
         int mineralAmount = mapParam.getMineralAmount();
 
-
-
         String[][] map = new String[width][height];
         basicMapGenerator(map, width, height);
         for (int i = hillAmount; i > 0; i--) {
