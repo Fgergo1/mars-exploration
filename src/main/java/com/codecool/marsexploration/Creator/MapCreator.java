@@ -1,23 +1,27 @@
 package com.codecool.marsexploration.Creator;
 
+import com.codecool.marsexploration.Input.MapParameters;
+
 import java.util.Random;
 
 public class MapCreator implements  MapCreatorInterface {
 
 
     private final Random random;
+    private final MapParameters mapParam;
 
-    public MapCreator(Random random) {
+    public MapCreator(Random random, MapParameters mapParameters) {
         this.random = random;
+        this.mapParam = mapParameters;
     }
 
-    public String[][] createMap(int height, int width, int pitArea, int hillArea, int hillAmount, int mineralAmount) {
-        String[][] map = new String[width][height];
-        basicMapGenerator(map, width, height);
-        for (int i = hillAmount; i > 0; i--) {
-            hillCreator(map,hillArea,width,height);
+    public String[][] createMap() {
+        String[][] map = new String[mapParam.getWidth()][mapParam.getHeight()];
+        basicMapGenerator(map, mapParam.getWidth(), mapParam.getHeight());
+        for (int i = mapParam.getHillAmount(); i > 0; i--) {
+            hillCreator(map, mapParam.getHillArea(), mapParam.getWidth(),mapParam.getHeight());
         }
-        mineralCreator(map,width,height,mineralAmount);
+        mineralCreator(map,mapParam.getWidth(),mapParam.getHeight(), mapParam.getMineralAmount());
 
         return map;
     }

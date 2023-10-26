@@ -1,21 +1,30 @@
 package com.codecool.marsexploration;
 
 import com.codecool.marsexploration.Creator.MapCreator;
+import com.codecool.marsexploration.Input.MapParameters;
+import com.codecool.marsexploration.Logger.Logger;
+import com.codecool.marsexploration.Logger.LoggerImpl;
+import com.codecool.marsexploration.Ui.MapUi;
 import com.codecool.marsexploration.Writer.Writer;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) throws IOException {
         Random random = new Random();
-        MapCreator mapCreator = new MapCreator(random);
-        System.out.println(random.nextInt(42));
+        Scanner scanner = new Scanner(System.in);
+        Logger logger = new LoggerImpl();
+        MapParameters mapParameters = new MapParameters(scanner,logger);
+        MapCreator mapCreator = new MapCreator(random, mapParameters);
+        Writer writer = new Writer(mapCreator);
+        MapUi mapUi = new MapUi(mapParameters,mapCreator,writer);
 
 
-        Writer writer = new Writer(mapCreator.createMap(20,20,2,10,2,4));
 
-        writer.writeMapToTxt();
+
+        mapUi.run();
 
 
     }
