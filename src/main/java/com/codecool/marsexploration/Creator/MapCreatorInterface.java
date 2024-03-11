@@ -4,5 +4,5 @@ import com.codecool.marsexploration.Input.MapParameters;
 
 public interface MapCreatorInterface {
 
-    public String[][] createMap();
+    String[][] createMap();
 }

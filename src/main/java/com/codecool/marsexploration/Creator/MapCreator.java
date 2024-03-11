@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class MapCreator implements  MapCreatorInterface {
     private final MapParameters mapParam;
-    private List<LandMarks> creators;
+    private final List<LandMarks> creators;
 
     public MapCreator(Random random, MapParameters mapParameters, NeighborChecker neighborChecker) {
         this.mapParam = mapParameters;

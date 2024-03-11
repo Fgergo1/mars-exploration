@@ -24,7 +24,7 @@ public class WaterCreatorImpl  implements LandMarks{
         while (waterSavedAmount > 0) {
             int i = random.nextInt(width);
             int j = random.nextInt(height);
-            if (map[i][j].equals(groundSymbol) && neighborChecker.NeighborChecker(pitsSymbol, i, j, map)) {
+            if (map[i][j].equals(groundSymbol) && neighborChecker.neighborChecker(pitsSymbol, i, j, map)) {
                 map[i][j] = waterSymbol;
                 waterSavedAmount--;
             }

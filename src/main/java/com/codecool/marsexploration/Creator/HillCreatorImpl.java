@@ -19,8 +19,7 @@ public class HillCreatorImpl implements LandMarks {
         int hillAmount = mapParameters.getHillAmount();
         for (int z = 0; z < hillAmount; z++) {
 
-
-            int hillAreaSaved = mapParameters.getHillArea();
+            int hillArea = mapParameters.getHillArea();
             int randomNumX = random.nextInt(3, width - 5);
             int randomNumY = random.nextInt(3, height - 5);
             map[randomNumX][randomNumY] = hillSymbol;
@@ -28,9 +27,9 @@ public class HillCreatorImpl implements LandMarks {
                 for (int j = 1; j < height - 1; j++) {
                     if (map[i - 1][j + 1] == hillSymbol || map[i - 1][j - 1] == hillSymbol || map[i - 1][j] == hillSymbol) {
                         map[i][j] = hillSymbol;
-                        hillAreaSaved--;
+                        hillArea--;
                     }
-                    if (hillAreaSaved == 0) {
+                    if (hillArea == 0) {
                         break;
                     }
                 }

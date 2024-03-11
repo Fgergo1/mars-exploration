@@ -44,6 +44,4 @@ public class PitCreatorImpl implements LandMarks{
             }
         }
     }
-
-
 }

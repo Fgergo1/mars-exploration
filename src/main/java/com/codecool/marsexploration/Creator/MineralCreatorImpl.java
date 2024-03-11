@@ -20,10 +20,9 @@ public class MineralCreatorImpl implements LandMarks {
 
         for (int z = 0; z < savedMineralAmount; z++) {
 
-
             for (int i = 1; i < width - 1; i++) {
                 for (int j = 1; j < height - 1; j++) {
-                    if (neighborChecker.NeighborChecker(hillSymbol, i, j, map) && random.nextBoolean()) {
+                    if (neighborChecker.neighborChecker(hillSymbol, i, j, map) && random.nextBoolean()) {
                         map[i][j] = mineralSymbol;
                         savedMineralAmount--;
                     }
