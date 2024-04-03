@@ -1,39 +1,57 @@
-# Mars Exploration
-### Overview
+### Mars Exploration
 Welcome to the Mars Exploration project! This software is designed to generate randomized maps of Mars for simulation exercises, aiding in the calibration of Mars rovers. The application's flexibility allows it to adapt to changing requirements efficiently.
 
 ### How It Works
-1. 
-   A custom map configuration object is created, containing essential features such as the file name, map width, symbols, and numbers for terrain elements and resources.
-   The generator produces a unique map with parameters from the configuration every time it runs.
+1. A custom map configuration object is created, defining essential features such as file name, map width, and symbols for terrain elements and resources. The generator utilizes these parameters to produce a unique map upon each run.
 
-2. 
-   Mountains and pits are created with specified areas and random shapes.
-   The shape generator code is meticulously tested to ensure accuracy.
-   Shapes are placed on the map without overlap, within the defined boundaries.
+2. Mountains and pits are generated with specified areas and random shapes, ensuring non-overlapping placement within defined boundaries. The shape generator undergoes rigorous testing for accuracy.
 
-3. 
-   Mineral and water units are strategically placed next to their preferences (mountains and pits) when possible.
-   
-4. 
-   A validator checks the map configuration to ensure safe placement within the given area.
-   The program exits if the provided data cannot be safely accommodated.
+3. Mineral and water units are strategically positioned near their preferred terrain (mountains and pits) whenever possible.
 
-5. 
-   Different shape-generating strategies are implemented, configurable through parameters from the map configuration object.
-   The software is designed to be open to extensions, allowing the addition of new terrain elements, resources, or generating strategies.
+4. A validator ensures safe map configuration, exiting the program if provided data cannot be safely accommodated within the given area.
 
-6. 
-   The generated map is saved into a plain text file specified in the configuration.
+5. Various shape-generating strategies are implemented, configurable via parameters from the map configuration object, fostering adaptability and extension for new terrain elements, resources, or generation strategies.
 
-  ### How to Use
-   1. Clone the repository.
-   2. Open CMD at the Java file location and run it with this command: javac [filename.java]
-   3. Set up the map configuration object with your desired parameters to the prompt.
-   
+6. The resulting map is saved to a plain text file specified in the configuration.
 
-### Technologies
 
-This project is only use Java.
+### Built With
+[![Java](https://skillicons.dev/icons?i=java&theme=light)](https://skillicons.dev)
+
+### How to Use
+
+**Prerequisites:**
+
+1. Install Java from [https://www.java.com/en/download/help/download_options.html]
+2. Install JDK from [https://www.oracle.com/java/technologies/downloads/]
+3. Install Git from : [https://git-scm.com/downloads]
+
+
+**Usage:**
+
+To set up the Buffet Management System locally, follow these simple steps:
+
+1. Clone the repository from Github
+   ```sh
+   git clone git@github.com:Fgergo1/mars-exploration.git
+   ```
+2. Within your file explorer or terminal, navigate to the directory containing the cloned repository (e.g., `path/to/your/mars-exploration`).
+   Once there, locate the folder named `classes` (it might be within a folder named `target`). Open this `classes` folder.
+
+3. Open a terminal or command prompt and run the following command :
+```sh
+   java com.codecool.ehotel.Application
+   ```
+and press enter.
+
+
+### Contact
+
+Email: farkasgergot@gmail.com
+
+
+### Useful resources
+
+[Install Java and JDK](https://www.youtube.com/watch?v=SQykK40fFds&t=1s)
 
 Happy Mars Exploration! 🚀
