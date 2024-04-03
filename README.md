@@ -40,7 +40,7 @@ To set up the Buffet Management System locally, follow these simple steps:
 
 3. Open a terminal or command prompt and run the following command :
 ```sh
-   java com.codecool.ehotel.Application
+   java com.codecool.marsexploration.Application
    ```
 and press enter.
 
