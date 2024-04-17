@@ -23,8 +23,7 @@ Welcome to the Mars Exploration project! This software is designed to generate r
 **Prerequisites:**
 
 1. Install Java from [https://www.java.com/en/download/help/download_options.html]
-2. Install JDK from [https://www.oracle.com/java/technologies/downloads/]
-3. Install Git from : [https://git-scm.com/downloads]
+2. Install Git from : [https://git-scm.com/downloads]
 
 
 **Usage:**
@@ -52,6 +51,6 @@ Email: farkasgergot@gmail.com
 
 ### Useful resources
 
-[Install Java and JDK](https://www.youtube.com/watch?v=SQykK40fFds&t=1s)
+[Install Java](https://www.youtube.com/watch?v=SQykK40fFds&t=1s)
 
 Happy Mars Exploration! 🚀
